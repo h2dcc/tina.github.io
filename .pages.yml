@@ -50,6 +50,4 @@ content:
               output: /content/editor
               categories: [image]
       - { name: image, label: 特色图片地址, type: string, required: true }
-      - name: body
-        label: 正文
-        type: rich-text
+      - { name: body, label: 正文, type: rich-text }
