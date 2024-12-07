@@ -141,9 +141,8 @@ if: steps.check_images.outputs.deploy == 'true' # 添加在 deploy 中
 
 ![对部署到 VPS 的有效](7.webp)
 
-3.  **Cloudflare Pages 忽略部署设置**
+3. **Cloudflare Pages 忽略部署设置**
     
-
 暂未找到合适方法。不过 Cloudflare 财大气粗，可能也不在乎多构建几次。
 
 * * *
