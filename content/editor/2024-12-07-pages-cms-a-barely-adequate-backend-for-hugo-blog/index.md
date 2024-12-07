@@ -2,7 +2,7 @@
 title: Pages CMS：一个勉强够用的HUGO博客后台
 draft: false
 slug: pages-cms-a-barely-adequate-backend-for-hugo-blog
-date: 2024-12-06T11:41:00
+date: 2024-12-06T19:41:00
 categories:
   - IT互联网
 tags:
@@ -142,7 +142,7 @@ if: steps.check_images.outputs.deploy == 'true' # 添加在 deploy 中
 ![对部署到 VPS 的有效](7.webp)
 
 3. **Cloudflare Pages 忽略部署设置**
-    
+
 暂未找到合适方法。不过 Cloudflare 财大气粗，可能也不在乎多构建几次。
 
 * * *
