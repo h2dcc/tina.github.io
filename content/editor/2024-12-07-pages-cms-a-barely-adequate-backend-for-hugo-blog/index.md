@@ -11,7 +11,7 @@ tags:
   - PagesCMS
 image: 0.webp
 ---
-> 从 WordPress 迁移到 Hugo 后，我一直对 WordPress 后台管理以及手机 APP 的便利性念念不忘，为此我在之前也写过关于 [如何在手机上更新Hugo博客](https://hyruo.com/article/how-to-update-a-hugo-blog-on-an-android-phone/\)]\(https://hyruo.com/article/how-to-update-a-hugo-blog-on-an-android-phone/) 的文章，但是在手机上使用 Vscode 和 StackEdit 还是有点麻烦，主要是显示屏太小，一些精细化操作很难用手指触控解决。过程中我也尝试过几种 Hugo CMS 方案，但一直未满足我的需求。
+> 从 WordPress 迁移到 Hugo 后，我一直对 WordPress 后台管理以及手机 APP 的便利性念念不忘，为此我在之前也写过关于 [如何在手机上更新Hugo博客](https://hyruo.com/article/how-to-update-a-hugo-blog-on-an-android-phone/) 的文章，但是在手机上使用 Vscode 和 StackEdit 还是有点麻烦，主要是显示屏太小，一些精细化操作很难用手指触控解决。过程中我也尝试过几种 Hugo CMS 方案，但一直未满足我的需求。
 
 * * *
 
@@ -43,7 +43,7 @@ Pages CMS 是 Github 上一个新的开源项目，在 0.x 版本时，可以选
 
 于是兴冲冲地按文档部署了 1.0 版本，过程还是相对复杂但也顺利。可是在使用过程中，有一个问题我始终 [无法解决](https://github.com/pages-cms/pages-cms/issues/129)
 
-\> 我的 hugo 博客文件都是在 `content/posts` 下边的单个文件夹，博客图片跟 md 文件在同一个文件夹内。我好不容易解决了正文中图片的上传和引用问题，但是 front-matter 中自动生成的特色图片地址没法被 hugo 渲染。
+> 我的 hugo 博客文件都是在 `content/posts` 下边的单个文件夹，博客图片跟 md 文件在同一个文件夹内。我好不容易解决了正文中图片的上传和引用问题，但是 front-matter 中自动生成的特色图片地址没法被 hugo 渲染。
 
 于是我提交了这个 issue 向开发者反映。但开发者也说他自己暂时没办法解决，而且之前已经有几个人提出过类似问题，都是卡在 Hugo 的文件路径上。
 
