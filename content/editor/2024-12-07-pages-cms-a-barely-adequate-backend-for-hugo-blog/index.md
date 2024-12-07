@@ -2,7 +2,7 @@
 title: Pages CMS：一个勉强够用的HUGO博客后台
 draft: false
 slug: pages-cms-a-barely-adequate-backend-for-hugo-blog
-date: 2024-12-06T19:41:00
+date: 2024-12-06T11:41:00
 categories:
   - IT互联网
 tags:
@@ -11,7 +11,11 @@ tags:
   - PagesCMS
 image: 0.webp
 ---
+<<<<<<< HEAD
 > 从 WordPress 迁移到 Hugo 后，我一直对 WordPress 后台管理以及手机 APP 的便利性念念不忘，为此我在之前也写过关于 [如何在手机上更新Hugo博客](https://hyruo.com/article/how-to-update-a-hugo-blog-on-an-android-phone/) 的文章，但是在手机上使用 Vscode 和 StackEdit 还是有点麻烦，主要是显示屏太小，一些精细化操作很难用手指触控解决。过程中我也尝试过几种 Hugo CMS 方案，但一直未满足我的需求。
+=======
+> 从 WordPress 迁移到 Hugo 后，我一直对 WordPress 后台管理以及手机 APP 的便利性念念不忘，为此我在之前也写过关于 [如何在手机上更新Hugo博客](https://hyruo.com/article/how-to-update-a-hugo-blog-on-an-android-phone/\)%5D\(https://hyruo.com/article/how-to-update-a-hugo-blog-on-an-android-phone/) 的文章，但是在手机上使用 Vscode 和 StackEdit 还是有点麻烦，主要是显示屏太小，一些精细化操作很难用手指触控解决。过程中我也尝试过几种 Hugo CMS 方案，但一直未满足我的需求。
+>>>>>>> f48987388609b03a304607204ddb08ca9a445109
 
 * * *
 
@@ -109,7 +113,8 @@ content:
 
 ![Vercel 频繁部署](5.webp)
 
-1. **Vercel 忽略部署设置**
+1.  **Vercel 忽略部署设置**
+    
 
 在 `Vercel Setting Git` 中，有一个忽略构建选项，选择 `custom` 并在其中添加如下命令即可。
 
@@ -117,15 +122,15 @@ content:
 if git log -1 --pretty=%B | grep -iqF 'webp'; then echo "🛑 - Build cancelled (commit message contains 'webp')"; exit 0; else echo "✅ - Build can proceed"; exit 1; fi
 ```
 
-
 > 原理：在 PageCMS 中添加图片，PageCMS 会自动生成一条 `Create content/editor/2024-12-07-pages-cms-a-barely-adequate-backend-for-hugo-blog/6.webp (via Pages CMS)` 这样的提交信息，其中关键词就是图片格式了。所以在 Vcel 忽略构建命令中只要检测到提交信息包含 webp 即忽略部署（以后命名文件路径时最好就不要将 webp 写进去了）。
 
-
-2. **Github Actions 忽略部署设置**
+2.  **Github Actions 忽略部署设置**
+    
 
 相同原理，在 Workflow 的部署模板中，添加如下代码，侦测是否仅提交 webp 图片，如果是的话，不启动自动构建。但该方法似乎无效。
 
-- name: Check for non-WebP images
+```
+      - name: Check for non-WebP images  # 添加在 built 中
         id: check_images
         run: |
           if git diff --name-only HEAD^ | grep -vE '\.webp$' > /dev/null; then
@@ -136,7 +141,11 @@ if git log -1 --pretty=%B | grep -iqF 'webp'; then echo "🛑 - Build cancelled 
             echo "::set-output name=deploy::false"
           fi
 
-3. **Cloudflare Pages 忽略部署设置**
+      if: steps.check_images.outputs.deploy == 'true' # 添加在 deploy 中
+```
+
+3.  **Cloudflare Pages 忽略部署设置**
+    
 
 暂未找到合适方法。不过 Cloudflare 财大气粗，可能也不在乎多构建几次。
 
