@@ -2,7 +2,7 @@
 title: Pages CMS：一个勉强够用的HUGO博客后台
 draft: true
 slug: pages-cms-a-barely-adequate-backend-for-hugo-blog
-date: 2024-12-07T03:41:00
+date: 2024-12-06T19:41:00
 categories:
   - IT互联网
 tags:
@@ -11,13 +11,11 @@ tags:
   - PagesCMS
 image: 0.webp
 ---
-\> 从 WordPress 迁移到 Hugo 后，我一直对 WordPress 后台管理以及手机 APP 的便利性念念不忘，为此我在之前也写过关于 _\[如何在手机上更新Hugo博客\](_[_https://hyruo.com/article/how-to-update-a-hugo-blog-on-an-android-phone/)_](https://hyruo.com/article/how-to-update-a-hugo-blog-on-an-android-phone/\)*) 的文章，但是在手机上使用 Vscode 和 StackEdit 还是有点麻烦，主要是显示屏太小，一些精细化操作很难用手指触控解决。过程中我也尝试过几种 Hugo CMS 方案，但一直未满足我的需求。
+> 从 WordPress 迁移到 Hugo 后，我一直对 WordPress 后台管理以及手机 APP 的便利性念念不忘，为此我在之前也写过关于 [如何在手机上更新Hugo博客](https://hyruo.com/article/how-to-update-a-hugo-blog-on-an-android-phone/\)]\(https://hyruo.com/article/how-to-update-a-hugo-blog-on-an-android-phone/) 的文章，但是在手机上使用 Vscode 和 StackEdit 还是有点麻烦，主要是显示屏太小，一些精细化操作很难用手指触控解决。过程中我也尝试过几种 Hugo CMS 方案，但一直未满足我的需求。
 
-<!--more-->
+* * *
 
-\---
-
-\## 几次失败的尝试
+## 几次失败的尝试
 
 ### Decap CMS
 
@@ -39,11 +37,11 @@ Tina CMS 之前又叫 Forestry CMS 也是一款无头编辑器，但我与它无
 
 * * *
 
-\## Pages CMS
+## Pages CMS
 
 Pages CMS 是 Github 上一个新的开源项目，在 0.x 版本时，可以选择在 Cloudflare 快捷部署。最近升级了 1.0 版本，默认可在 Vercel 部署。之前在 0.x 版本时我曾试过用一次，当时主要问题是该 CMS 不支持 webp 图片，我在项目提交了 issue，今早收到开发者回复说最新版本已经解决该问题。
 
-于是兴冲冲地按文档部署了 1.0 版本，过程还是相对复杂但也顺利。可是在使用过程中，有一个问题我始终 \[无法解决\]([https://github.com/pages-cms/pages-cms/issues/129](https://github.com/pages-cms/pages-cms/issues/129)) 。
+于是兴冲冲地按文档部署了 1.0 版本，过程还是相对复杂但也顺利。可是在使用过程中，有一个问题我始终 [无法解决](https://github.com/pages-cms/pages-cms/issues/129)
 
 \> 我的 hugo 博客文件都是在 `content/posts` 下边的单个文件夹，博客图片跟 md 文件在同一个文件夹内。我好不容易解决了正文中图片的上传和引用问题，但是 front-matter 中自动生成的特色图片地址没法被 hugo 渲染。
 
@@ -51,7 +49,6 @@ Pages CMS 是 Github 上一个新的开源项目，在 0.x 版本时，可以选
 
 见到开发者的回复后，我一度已经放弃继续使用 CMS 的想法。
 
->   
 > Thank you, I'm completely heartbroken. I'll just keep using some IDE tools like VSCode, but it's really inconvenient on a phone.
 
 见到开发者回复后，我突然想到，为啥一定要将 Hugo 的特色图片路径交由 CMS 去转换呢，我自己直接输入一个路径不就解决了。
