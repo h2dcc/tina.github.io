@@ -1,6 +1,6 @@
 ---
 title: Pages CMS：一个勉强够用的HUGO博客后台
-draft: false
+draft: true
 slug: pages-cms-a-barely-adequate-backend-for-hugo-blog
 date: 2024-12-06T19:41:00
 categories:
@@ -108,6 +108,37 @@ content:
 相比 StackEdit 可以手动暂停同步的做法，PageCMS 这类程序，会在每一次保存 `.pages.yml` 文件，每一次上传图片，每一次保存文章内容的过程中都提交更新到 Github 上，这样会造成 Github Actions 或者 Cloudflare Pages, Vercel 等自动部署服务在后台不断消耗部署时长。我本以为新建一个 test 分支会避免这个问题，结果没想到还是在调试 `.pages.yml` 文件时，连续触发 Vercel 四十多次自动部署，感觉再多点账号都得被干废了。
 
 ![Vercel 频繁部署](5.webp)
+
+1. **Vercel 忽略部署设置**
+
+在 `Vercel Setting Git` 中，有一个忽略构建选项，选择 `custom` 并在其中添加如下命令即可。
+
+```
+if git log -1 --pretty=%B | grep -iqF 'webp'; then echo "🛑 - Build cancelled (commit message contains 'webp')"; exit 0; else echo "✅ - Build can proceed"; exit 1; fi
+```
+
+
+> 原理：在 PageCMS 中添加图片，PageCMS 会自动生成一条 `Create content/editor/2024-12-07-pages-cms-a-barely-adequate-backend-for-hugo-blog/6.webp (via Pages CMS)` 这样的提交信息，其中关键词就是图片格式了。所以在 Vcel 忽略构建命令中只要检测到提交信息包含 webp 即忽略部署（以后命名文件路径时最好就不要将 webp 写进去了）。
+
+
+2. **Github Actions 忽略部署设置**
+
+相同原理，在 Workflow 的部署模板中，添加如下代码，侦测是否仅提交 webp 图片，如果是的话，不启动自动构建。但该方法似乎无效。
+
+- name: Check for non-WebP images
+        id: check_images
+        run: |
+          if git diff --name-only HEAD^ | grep -vE '\.webp$' > /dev/null; then
+            echo "Non-WebP images detected. Proceeding with deployment."
+            echo "::set-output name=deploy::true"
+          else
+            echo "Only WebP images detected. Skipping deployment."
+            echo "::set-output name=deploy::false"
+          fi
+
+3. **Cloudflare Pages 忽略部署设置**
+
+暂未找到合适方法。不过 Cloudflare 财大气粗，可能也不在乎多构建几次。
 
 * * *
 
