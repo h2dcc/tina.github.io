@@ -95,11 +95,11 @@ content:
 
 这样，起码解决了 Hugo 特色图片路径错误问题。但其实也带来一个新问题，就是在 Pages CMS 后台，没法在文字编辑区看到图片内容了。在使用 `![](image.webp)` 语法后，编辑区里图片直接消失。在添加图片名称后，稍微好点，起码知道这个位置有个图片了。
 
-![](/content/editor/2024-12-07-pages-cms-a-barely-adequate-backend-for-hugo-blog/3.webp)
+![显示错误但不影响使用](3.webp)
 
-经过测试发现，也有一种方法避免这个问题，就是直接在后台按 `/` 呼出编辑器内的图片功能，然后选择图片添加即可。这样，PagesCMS 会自动匹配图片路径为 `/content/post/articl-pyth/image.webp`。只是对习惯用 Markdown 输图片名的不太友好罢了（我的文件名基本都是1、2、3、4、5.webp）。
+如果直接在后台按 `/` 呼出编辑器内的图片功能添加图片，虽然在编辑器内可以看到图片长啥样，但 PagesCMS 会自动匹配图片路径为 `/content/post/articl-pyth/image.webp`，也是没法用的，Hugo 构建后图片肯定挂。
 
-就这样，终于算是基本搭建好一个能够给 Hugo 使用的 CMS 后台。
+但无论如何，终于算是基本搭建好一个能够给 Hugo 使用的 CMS 后台。
 
 * * *
 
@@ -107,7 +107,7 @@ content:
 
 相比 StackEdit 可以手动暂停同步的做法，PageCMS 这类程序，会在每一次保存 `.pages.yml` 文件，每一次上传图片，每一次保存文章内容的过程中都提交更新到 Github 上，这样会造成 Github Actions 或者 Cloudflare Pages, Vercel 等自动部署服务在后台不断消耗部署时长。我本以为新建一个 test 分支会避免这个问题，结果没想到还是在调试 `.pages.yml` 文件时，连续触发 Vercel 四十多次自动部署，感觉再多点账号都得被干废了。
 
-![](/content/editor/2024-12-07-pages-cms-a-barely-adequate-backend-for-hugo-blog/5.webp)
+![Vercel 频繁部署](5.webp)
 
 * * *
 
