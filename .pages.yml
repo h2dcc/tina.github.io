@@ -1,12 +1,12 @@
 media:
-  input: content/posts
-  output: /content/posts
+  input: content/editor
+  output: /content/editor
   categories: [image]
 content:
-  - name: posts
+  - name: editor
     label: 文章
     type: collection
-    path: content/posts
+    path: content/editor
     filename: index.md
     view:
       fields: [ title, date, draft ]
@@ -46,8 +46,8 @@ content:
             label: 添加照片
             type: image
             options:
-              input: content/posts
-              output: /content/posts
+              input: content/editor
+              output: /content/editor
               categories: [image]
       - { name: image, label: 特色图片地址, type: string, required: true }
       - name: body
