@@ -120,13 +120,13 @@ if git log -1 --pretty=%B | grep -iqF 'webp'; then echo "🛑 - Build cancelled 
 
 > 原理：在 PageCMS 中添加图片，PageCMS 会自动生成一条 `Create content/editor/2024-12-07-pages-cms-a-barely-adequate-backend-for-hugo-blog/6.webp (via Pages CMS)` 这样的提交信息，其中关键词就是图片格式了。所以在 Vcel 忽略构建命令中只要检测到提交信息包含 webp 即忽略部署（以后命名文件路径时最好就不要将 webp 写进去了）。
 
-2.  **Github Actions 忽略部署设置**
-    
 
-相同原理，在 Workflow 的部署模板中，添加如下代码，侦测是否仅提交 webp 图片，如果是的话，不启动自动构建。但该方法似乎无效。
+2. **Github Actions 忽略部署设置**
+
+相同原理，在 Workflow 的部署模板中，添加如下代码，侦测是否仅提交 webp 图片，如果是的话，不启动自动构建。我的 workflow 是设置由 Github 仓库部署到 VPS 的，发挥效果还是比较明显，平常几分钟的活，在 10 几秒就自动停了。但该方法似乎对部署到 Github Pages 无效 ，主要是 workflow 等到侦测命令时，其实都快构建完了，剩下 depoly to github pages 不过几秒钟的事，主要时长都花在前边。
 
 ```
-      - name: Check for non-WebP images  # 添加在 built 中
+- name: Check for non-WebP images # 添加在 build 中
         id: check_images
         run: |
           if git diff --name-only HEAD^ | grep -vE '\.webp$' > /dev/null; then
@@ -136,9 +136,10 @@ if git log -1 --pretty=%B | grep -iqF 'webp'; then echo "🛑 - Build cancelled 
             echo "Only WebP images detected. Skipping deployment."
             echo "::set-output name=deploy::false"
           fi
-
-      if: steps.check_images.outputs.deploy == 'true' # 添加在 deploy 中
+if: steps.check_images.outputs.deploy == 'true' # 添加在 deploy 中
 ```
+
+![对部署到 VPS 的有效](7.webp)
 
 3.  **Cloudflare Pages 忽略部署设置**
     
