@@ -1,6 +1,6 @@
 ---
 title: Pages CMS：一个勉强够用的HUGO博客后台
-draft: true
+draft: false
 slug: pages-cms-a-barely-adequate-backend-for-hugo-blog
 date: 2024-12-06T19:41:00
 categories:
