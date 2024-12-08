@@ -1,4 +1,3 @@
-
 ---
 title: "为什么中国人不喜欢逻辑学"
 slug: "why-does-not-chinese-need-logic"
